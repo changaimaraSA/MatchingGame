@@ -1,8 +1,42 @@
+var drawScene = {
+  "startScreen" : drawStartScreen,
+  "inGame" : drawInGame
+}
+
+var handlePresses = {
+  "startScreen" : mousePressedStartScreen,
+  "inGame" : mousePressedInGame
+}
+
+var canvasSize = {width : 500, height: 500};
+
+var currentScene = "startScreen";
+
 function setup() {
-  // put setup code here
+  createCanvas(canvasSize.width, canvasSize.height);
 }
 
 function draw() {
-  background("lightpink");
-  // put drawing code here
+  drawScene[currentScene]();
 }
+
+function mousePressed(){
+  handlePresses[currentScene]();
+}
+
+function drawInGame () {
+  background("darkred");
+}
+
+function drawStartScreen (){
+  background("lightBlue");
+}
+
+function mousePressedInGame(){
+  currentScene = "startScreen";
+}
+
+function mousePressedStartScreen(){
+  currentScene = "inGame";
+}
+
